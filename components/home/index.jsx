@@ -1,16 +1,7 @@
 "use client";
 import Posts from "../../components/post/Posts";
 import app from "../../utilis/firebase.config";
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc,
-  collection,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 const Homepage = () => {
@@ -20,6 +11,7 @@ const Homepage = () => {
     getPost();
   }, []);
 
+  //....get pin posts
   const getPost = async () => {
     const querySnapshot = await getDocs(collection(db, "pins"));
     querySnapshot.forEach((doc) => {
