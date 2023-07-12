@@ -21,7 +21,9 @@ const Homepage = () => {
 
   //..............
 
-  return <div className="mt-10">{posts ? <Posts posts={posts} /> : null}</div>;
+  return (
+    <div className="mt-10 mb-32">{posts ? <Posts posts={posts} /> : null}</div>
+  );
 };
 
 export default Homepage;

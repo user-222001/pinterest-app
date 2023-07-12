@@ -76,7 +76,7 @@ const Navbar = () => {
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
               {user ? (
-                <img src={user.photoURL} alt="dscdscds" />
+                <img src={user.photoURL} alt="image" />
               ) : (
                 <img src="https://imgv3.fotor.com/images/gallery/AI-3D-Female-Profile-Picture.jpg" />
               )}
