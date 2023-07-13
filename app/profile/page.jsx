@@ -15,7 +15,7 @@ import { useUserAuth } from "@/components/UserAuthContext";
 import Provider from "@/components/Provider/Provider";
 
 function Profile() {
-  const { user } = useUserAuth();
+  const { user, presentid } = useUserAuth();
   const [userPost, setUserPost] = useState([]);
   const db = getFirestore(app);
   useEffect(() => {
@@ -39,6 +39,13 @@ function Profile() {
     await deleteDoc(doc(db, "pins", id));
     window.location.reload();
   };
+
+  //edit posts
+  const editPost = async (id, title, location, zip, desc) => {
+    presentid(id, title, location, zip, desc);
+    router.push("/edit");
+  };
+
   return (
     <div className="p-8 bg-white shadow flex flex-col gap-10">
       <div className="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl  flex items-center justify-center text-indigo-500">
@@ -77,6 +84,21 @@ function Profile() {
           userPost?.map((item, index) => (
             <div key={index}>
               <PostItem post={item} />
+              <button
+                className="bg-lime-600 w-full p-1 mt-1
+      rounded-md text-white"
+                onClick={() =>
+                  editPost(
+                    item.id,
+                    item.title,
+                    item.location,
+                    item.zip,
+                    item.desc
+                  )
+                }
+              >
+                edit
+              </button>
               <button
                 className="bg-red-400 w-full p-1 mt-1
       rounded-md text-white"
